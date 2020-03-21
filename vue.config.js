@@ -5,7 +5,7 @@ module.exports = {
   // 输出文件目录
   outputDir: process.env.NODE_ENV === 'production' ? 'dist' : 'devdist',
   // eslint-loader 是否在保存的时候检查
-  lintOnSave: false,
+  lintOnSave: true,
   // 是否使用包含运行时编译器的 Vue 构建版本
 //   runtimeCompiler: false,
   // 生产环境是否生成 sourceMap 文件
@@ -53,6 +53,15 @@ module.exports = {
     hotOnly: false,
     // http 代理配置
     proxy: null,
+    proxy: {
+      '/devApi': {
+        target: 'http://www.web-jshtml.cn/productapi', //API服务器的地址http://www.web-jshtml.cn/api
+        changeOrigin: true,
+        pathRewrite: {
+          '^/devApi': ''
+        }
+      }
+    },
     overlay:{
         warnings: true,
         errors: true
